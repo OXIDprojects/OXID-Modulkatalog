@@ -12,9 +12,11 @@ try {
     }
 
     $mapping = [];
-    $mappingRaw = explode(array("\r\n", "\n", "\r"), $_POST['mapping']);
+    $mappingRaw = explode("\n", $_POST['mapping']);
     foreach ($mappingRaw as $map) {
-        if (preg_match('/^[-a-zA-z0-9_]+:[-a-zA-z0-9_]+$/') != 1) {
+        $map = trim($map);
+
+        if (preg_match('/^[-a-zA-z0-9_]+:[-a-zA-z0-9_]+$/', $map) != 1) {
             throw new Exception('Mapping not valid.');
         }
 
