@@ -5,6 +5,8 @@ $user = 'omc';
 $password = 'omc';
 
 try {
+    $url = $_POST['feed'];
+
     if (filter_var($url, FILTER_VALIDATE_URL) === false) {
         throw new Exception('URL not valid.');
     }
@@ -22,7 +24,7 @@ try {
 
     $feedList = [
         [
-            'url' => $_POST['feed'],
+            'url' => $url,
             'mapping' => $mapping
         ]
     ];
