@@ -1,7 +1,7 @@
 modules:
   label: Modules
   table: modules
-  filter: [url_recipe, vendor, title]
+  filter: [status, license, vendor, title]
   fields:
     title:
       type: text
@@ -18,6 +18,11 @@ modules:
       type: set
       items: [MIT,GPL,GNU,Commercial]
       label: License
+      required: true
+    status:
+      type: set
+      items: [neu eingetragen, in Bearbeitung, auf Github, abgelehnt]
+      label: Status
       required: true
     price:
       type: float
@@ -64,6 +69,10 @@ modules:
     desc_en:
       type: text
       label: Description english
+    notice:
+      type: text
+      label: Notice
+      description: Place for internal notices
 
 vendors:
   label: Vendors

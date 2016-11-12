@@ -22,9 +22,11 @@
 
     <a id="crudBtnNew" href="{{ app.url_generator.generate('crudCreate', {'entity': crudEntity}) }}" class="btn btn-success btn-crudlex">{{ 'crudlex.button.new'|trans }}</a>
 
-    <a id="" href="/omc/modules" class="btn btn-primary btn-crudlex">List all</a>
-    <a id="" href="/omc/modules?crudFilterurl_recipe=&crudFiltervendor=&crudFiltertitle=&crudSortField=created_at&crudSortAscending=true" class="btn btn-primary btn-crudlex">ToDo</a>
-    <a id="" href="/omc/modules?crudFilterurl_recipe=http&crudFiltervendor=&crudFiltertitle=&crudSortField=created_at&crudSortAscending=true" class="btn btn-primary btn-crudlex">Done</a>
+    <a id="" href="/omc/modules" class="btn btn-primary btn-crudlex">alle</a>
+    <a id="" href="/omc/modules?crudFilterstatus=neu+eingetragen&crudFilterlicense=&crudFiltervendor=&crudFiltertitle=&crudSortField=created_at&crudSortAscending=true" class="btn btn-primary btn-crudlex">eingetragen</a>
+    <a id="" href="/omc/modules?crudFilterstatus=abgelehnt&crudFilterlicense=&crudFiltervendor=&crudFiltertitle=&crudSortField=created_at&crudSortAscending=true" class="btn btn-primary btn-crudlex">abgelehnt</a>
+    <a id="" href="/omc/modules?crudFilterstatus=in+Bearbeitung&crudFilterlicense=&crudFiltervendor=&crudFiltertitle=&crudSortField=created_at&crudSortAscending=true" class="btn btn-primary btn-crudlex">Bearbeitung</a>
+    <a id="" href="/omc/modules?crudFilterstatus=auf+Github&crudFilterlicense=&crudFiltervendor=&crudFiltertitle=&crudSortField=created_at&crudSortAscending=true" class="btn btn-primary btn-crudlex">Github</a>
 
     {% if filter %}
 
@@ -82,7 +84,7 @@
                         {% if type == 'many' %}
                             {{ definition.getFieldLabel(field) }}
                         {% else %}
-                            {% if field in ['title', 'vendor', 'versions', 'tags', 'updated_at', 'price'] %}
+                            {% if field in ['title', 'vendor', 'versions', 'status', 'updated_at'] %}
                                 <a href="{{ app.url_generator.generate('crudList', {'entity': crudEntity, 'crudSortField': field, 'crudSortAscending': sortAscendingStr ? 'false' : 'true','crudPage': page}|merge(filterParams)) }}">
                                     {{ definition.getFieldLabel(field) }}
                                     {% if field == sortField %}
@@ -100,7 +102,7 @@
                 <tr id="crudId{{ entity.get('id') }}">
                     {% for field in fields %}
                         <td class="crudField{{ field }}">
-                            {% if field in ['title', 'vendor', 'versions', 'tags', 'updated_at', 'price'] %}
+                            {% if field in ['title', 'vendor', 'versions', 'status', 'updated_at'] %}
                                 {% include  app.crud.getTemplate(app, 'template', 'renderField', crudEntity) with {
                                 entity: entity,
                                 crudEntity: crudEntity,

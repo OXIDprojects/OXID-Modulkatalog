@@ -3,6 +3,7 @@ CREATE TABLE `modules` (
   `title` varchar(250) NOT NULL,
   `vendor` int(11) NOT NULL DEFAULT 0,
   `license` varchar(50) NOT NULL DEFAULT '',
+  `status` varchar(150) NOT NULL DEFAULT '',
   `price` float DEFAULT NULL,
   `url_info` varchar(255) NOT NULL,
   `url_download` varchar(255) NOT NULL DEFAULT '',
@@ -15,6 +16,7 @@ CREATE TABLE `modules` (
   `tags` text,
   `desc_de` text,
   `desc_en` text,
+  `notice` text,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime DEFAULT NULL,
@@ -34,5 +36,4 @@ CREATE TABLE `vendors` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-ALTER TABLE `modules`
-  ADD CONSTRAINT `modules_vendors` FOREIGN KEY (`vendor`) REFERENCES `vendors` (`id`);
+ALTER TABLE `modules` ADD CONSTRAINT `modules_vendors` FOREIGN KEY (`vendor`) REFERENCES `vendors` (`id`);
