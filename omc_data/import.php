@@ -1,8 +1,8 @@
 <?php
 
-$dsn = 'mysql:dbname=omc;host=127.0.0.1';
+$dsn = 'mysql:dbname=omc;host=mysql_host';
 $user = 'omc';
-$password = 'omc';
+$password = 'somepass';
 
 try {
     $url = $_POST['feed'];
