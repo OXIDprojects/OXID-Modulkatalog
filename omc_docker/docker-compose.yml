@@ -6,7 +6,7 @@ omc_apache:
   ports:
     - "80:80"
   volumes:
-    - ~/Dokumente/Development/OXID-Modulkatalog/omc_data:/var/www/html/
+    - /docker/data/oxid_omc/www/:/var/www/html/
   links:
     - omc_mysql:mysql_host  
 omc_mysql:
@@ -15,7 +15,7 @@ omc_mysql:
   container_name: omc_mysql
   hostname: mysql.oxid-dev.com
   volumes:
-    - ~/Dokumente/Development/OXID-Modulkatalog/omc_data/mysql:/var/lib/mysql
+    - /docker/data/oxid_omc/mysql/:/var/lib/mysql
   environment:
     MYSQL_ROOT_PASSWORD: somepass
     MYSQL_DATABASE: omc
