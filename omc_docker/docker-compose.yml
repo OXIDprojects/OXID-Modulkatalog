@@ -1,0 +1,25 @@
+omc_apache:
+  build: omc_apache/.
+  restart: always
+  container_name: omc_apache
+  hostname: oxid-dev.com
+  ports:
+    - "80:80"
+  volumes:
+    - /docker/data/oxid_omc/www/:/var/www/html/
+  links:
+    - omc_mysql:mysql_host  
+omc_mysql:
+  image: "mysql:5.6"
+  restart: always
+  container_name: omc_mysql
+  hostname: mysql.oxid-dev.com
+  volumes:
+    - /docker/data/oxid_omc/mysql/:/var/lib/mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: somepass
+    MYSQL_DATABASE: omc
+    MYSQL_USER: omc
+    MYSQL_PASSWORD: somepass
+  ports:
+    - "127.0.0.1:8000:3306"

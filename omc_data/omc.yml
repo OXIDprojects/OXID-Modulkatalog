@@ -1,0 +1,75 @@
+modules:
+  label: Modules
+  table: modules
+  filter: [url_recipe, vendor, title]
+  fields:
+    title:
+      type: text
+      label: Title
+      required: true
+    vendor:
+      type: reference
+      label: Vendor
+      reference:
+        nameField: name
+        entity: vendors
+      required: true
+    license:
+      type: set
+      items: [MIT,GPL,GNU,Commercial]
+      label: License
+      required: true
+    price:
+      type: float
+      label: Price
+      required: true
+    url_info:
+      type: url
+      label: URL module info
+      required: true
+    url_download:
+      type: url
+      label: URL download
+      required: true
+    url_picture:
+      type: url
+      label: URL picture
+    url_recipe:
+      type: url
+      label: URL github recipe
+    shop_versions:
+      type: text
+      label: Versions
+      description: Comma separated, eg. 4.10,4.9,4.8
+      required: true
+    module_version:
+      type: text
+      label: Module version
+      required: true
+    mapping_src:
+      type: text
+      label: Mapping source
+    mapping_dest:
+      type: text
+      label: Mapping destination
+    tags:
+      type: text
+      label: Tags
+      description: Comma separated, eg. backend,cms,content
+      required: true
+    desc_de:
+      type: text
+      label: Description german
+      required: true
+    desc_en:
+      type: text
+      label: Description english
+
+vendors:
+  label: Vendors
+  table: vendors
+  fields:
+    name:
+      type: text
+      label: Name
+      required: true

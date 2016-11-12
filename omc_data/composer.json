@@ -1,0 +1,7 @@
+{
+  "require": {
+    "philiplb/crudlex": "0.10.0",
+    "knplabs/github-api": "^1.7",
+    "php-http/guzzle6-adapter": "^1.1"
+  }
+}
