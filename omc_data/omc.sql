@@ -36,4 +36,4 @@ CREATE TABLE `vendors` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- ALTER TABLE `modules` ADD CONSTRAINT `modules_vendors` FOREIGN KEY (`vendor`) REFERENCES `vendors` (`id`);
+ALTER TABLE `modules` ADD CONSTRAINT `modules_vendors` FOREIGN KEY (`vendor`) REFERENCES `vendors` (`id`);
