@@ -1,21 +1,32 @@
 <?php
 
-$feedList = [
-    [
-        'url' => "http://exchange.oxid-esales.com/rss/eXchange-International/Recent-products-in-shop/",
-        'mapping' => [
-            'title' => 'title',
-            'url_info' => 'link',
-            'desc_de' => 'description'
-        ]
-    ]
-];
-
 $dsn = 'mysql:dbname=omc;host=127.0.0.1';
 $user = 'omc';
 $password = 'omc';
 
 try {
+    if (filter_var($url, FILTER_VALIDATE_URL) === false) {
+        throw new Exception('URL not valid.');
+    }
+
+    $mapping = [];
+    $mappingRaw = explode(array("\r\n", "\n", "\r"), $_POST['mapping']);
+    foreach ($mappingRaw as $map) {
+        if (preg_match('/^[-a-zA-z0-9_]+:[-a-zA-z0-9_]+$/') != 1) {
+            throw new Exception('Mapping not valid.');
+        }
+
+        $map = explode(':', $map);
+        $mapping[$map[0]] = $map[1];
+    }
+
+    $feedList = [
+        [
+            'url' => $_POST['feed'],
+            'mapping' => $mapping
+        ]
+    ];
+
     $db = new PDO($dsn, $user, $password);
 
     foreach ($feedList as $feed) {
@@ -27,7 +38,7 @@ try {
         $elements = $xpath->query("/rss/channel/item");
 
         $columnList = array_keys($feed['mapping']);
-        $sql = "INSERT INTO modules (" . implode(', ', $columnList) . ", created_at, updated_at) "
+        $sql = "INSERT IGNORE INTO modules (" . implode(', ', $columnList) . ", created_at, updated_at) "
             . "VALUES (:" . implode(', :', $columnList) . ", NOW(), NOW())";
         $statement = $db->prepare($sql, [PDO::ERRMODE_EXCEPTION]);
 

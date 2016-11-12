@@ -20,6 +20,7 @@ CREATE TABLE `modules` (
   `deleted_at` datetime DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
+  UNIQUE KEY (`url_info`),
   KEY `vendors` (`vendor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
