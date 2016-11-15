@@ -29,6 +29,7 @@ $app->get('omc/json/{id}', function ($id) use ($app) {
     foreach($tagsData as $tag) {
         $jsonDataTags[] = trim($tag);
     }
+    sort($jsonDataTags);
     $jsonData["tags"] = $jsonDataTags;
 
     // shop versions
@@ -37,6 +38,7 @@ $app->get('omc/json/{id}', function ($id) use ($app) {
     foreach($versionsData as $version) {
         $jsonDataVersions[] = trim($version);
     }
+    rsort($jsonDataVersions);
 
     // version
     $jsonData["versions"][$dbData["module_version"]] = array(
@@ -65,7 +67,7 @@ $app->get('omc/json/{id}', function ($id) use ($app) {
     if(file_put_contents($dirName.$fileName, $fileData)) {
         echo '<span style="color: green;">file successfully created</span>';
         $recipeUrl = 'https://github.com/OXIDprojects/OXID-Modul-Connector/blob/recipes/'.$dbData2["name"].'/'.$fileName;
-        $sql = "UPDATE modules SET url_recipe = ? WHERE id = ?";
+        $sql = "UPDATE modules SET url_recipe = ? , status = 'auf Github' WHERE id = ?";
         $app['db']->executeUpdate($sql, array($recipeUrl, (int) $dbData["id"]));
     } else {
         echo '<span style="color: red;">file creation failed</span>';
