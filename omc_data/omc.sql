@@ -1,10 +1,11 @@
+-- Create syntax for TABLE 'modules'
 CREATE TABLE `modules` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(250) NOT NULL,
-  `vendor` int(11) NOT NULL DEFAULT 0,
+  `vendor` int(11) NOT NULL DEFAULT '4',
   `license` varchar(50) NOT NULL DEFAULT '',
-  `status` varchar(150) NOT NULL DEFAULT '',
-  `price` float DEFAULT NULL,
+  `status` varchar(150) NOT NULL DEFAULT 'neu eingetragen',
+  `price` double NOT NULL DEFAULT '0',
   `url_info` varchar(255) NOT NULL,
   `url_download` varchar(255) NOT NULL DEFAULT '',
   `url_picture` varchar(255) NOT NULL DEFAULT '',
@@ -20,12 +21,13 @@ CREATE TABLE `modules` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime DEFAULT NULL,
-  `version` int(11) NOT NULL DEFAULT 0,
+  `version` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY (`url_info`),
+  UNIQUE KEY `url_info` (`url_info`),
   KEY `vendors` (`vendor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
+-- Create syntax for TABLE 'vendors'
 CREATE TABLE `vendors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -34,6 +36,4 @@ CREATE TABLE `vendors` (
   `deleted_at` datetime DEFAULT NULL,
   `version` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-ALTER TABLE `modules` ADD CONSTRAINT `modules_vendors` FOREIGN KEY (`vendor`) REFERENCES `vendors` (`id`);
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;

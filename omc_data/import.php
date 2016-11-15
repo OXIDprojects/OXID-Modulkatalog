@@ -51,7 +51,7 @@ try {
 
             $childNodes = [];
             foreach ($module->childNodes AS $item) {
-                $childNodes[$item->nodeName] = $item->nodeValue;
+                $childNodes[$item->nodeName] = cleanDesc($item->nodeValue);
             }
 
             $sqlParameters = [];
@@ -63,7 +63,7 @@ try {
         }
     }
 
-    echo "Luckily there wasn't any problem.\n";
+    echo "Import successful.\n";
 
 } catch (PDOException $e) {
     echo 'Database error: ' . $e->getMessage() ."\n";
@@ -71,4 +71,13 @@ try {
     echo 'Download failed: ' . $e->getMessage() ."\n";
 } catch (Exception $e) {
     echo 'Something terrible has gone completely wrong: ' .$e->getMessage() ."\n";
+}
+
+function cleanDesc($sDesc = "")
+{
+    $sDesc = str_replace("</p>", " ", $sDesc);
+    $sDesc = str_replace("</br>", " ", $sDesc);
+    $sDesc = strip_tags($sDesc);
+    $sDesc = str_replace("&nbsp;", " ", $sDesc);
+    return $sDesc;
 }

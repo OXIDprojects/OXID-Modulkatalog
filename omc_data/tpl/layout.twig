@@ -73,6 +73,7 @@
                             {% for entity in app.crud.getEntities() %}
                                 <li {% if crudEntity == entity %} class="active" {% endif%}><a href="{{ app.url_generator.generate('crudList', {'entity': entity}) }}">{{ app.crud.getData(entity).getDefinition().getLabel() }}</a></li>
                             {% endfor %}
+                            <li><a href="/import_form.php" target="_blank">RSS Import</a></li>
                         </ul>
                     </div>
                 </div>
