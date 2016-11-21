@@ -20,6 +20,7 @@ $app->get('omc/json/{id}', function ($id) use ($app) {
     $jsonData["picture"] = $dbData["url_picture"];
     $jsonData["price"] = number_format($dbData["price"], 2, ".", "");
     $jsonData["license"] = $dbData["license"];
+    $jsonData["id"] = $dbData["module_id"];
     $jsonData["desc"]["en"] = $dbData["desc_en"];
     $jsonData["desc"]["de"] = $dbData["desc_de"];
 

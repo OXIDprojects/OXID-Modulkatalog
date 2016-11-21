@@ -18,14 +18,13 @@ modules:
       type: set
       items: [MIT,GPL,GNU,Commercial]
       label: License
-      required: true
     status:
       type: set
       items: [neu eingetragen, in Bearbeitung, auf Github, abgelehnt]
       label: Status
       required: true
     price:
-      type: float
+      type: text
       label: Price
       required: true
     url_info:
@@ -35,7 +34,6 @@ modules:
     url_download:
       type: url
       label: URL download
-      required: true
     url_picture:
       type: url
       label: URL picture
@@ -46,11 +44,12 @@ modules:
       type: text
       label: Versions
       description: Comma separated, eg. 4.10,4.9,4.8
-      required: true
     module_version:
       type: text
       label: Module version
-      required: true
+    module_id:
+      type: text
+      label: Module id
     mapping_src:
       type: text
       label: Mapping source
@@ -60,8 +59,7 @@ modules:
     tags:
       type: text
       label: Tags
-      description: Comma separated, eg. backend,cms,content
-      required: true
+      description: "Available tags: https://github.com/OXIDprojects/OXID-Module-Connector/wiki/Tagging-modules"
     desc_de:
       type: text
       label: Description german

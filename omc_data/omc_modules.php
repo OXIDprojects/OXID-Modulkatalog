@@ -13,6 +13,6 @@ $app['crud.layout'] = 'layout.twig';
 $app['crud.template.list.modules'] = 'list.twig';
 $app->mount('/omc', new CRUDlex\ControllerProvider());
 $app->match('/', function() use ($app) {
-    return $app->redirect($app['url_generator']->generate('crudList', array('entity' => 'modules')));
+    return $app->redirect("/omc/modules?crudSortField=updated_at&crudSortAscending=false&crudPage=0&crudFilterstatus=neu+eingetragen&crudFilterlicense=&crudFiltervendor=&crudFiltertitle=");
 })->bind('homepage');
 $app->run();
